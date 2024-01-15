@@ -21,8 +21,8 @@ Where continent is not null
 order by 1,2
 
 
--- Nombre total de cas par rapport au nombre total de décès
--- Montre la probabilité de mourir si vous contractez le covid dans votre pays
+-- Nombre total de cas par rapport au nombre total de dÃ©cÃ¨s
+-- Montre la probabilitÃ© de mourir si vous contractez le covid dans votre pays
 
 Select Location, date, total_cases,total_deaths, (total_deaths/total_cases)*100 as DeathPercentage
 From CovidDeaths
@@ -31,8 +31,8 @@ and continent is not null
 order by 1,2
 
 
--- Total des cas par rapport à la population
--- Montre quel pourcentage de la population est infecté par Covid
+-- Total des cas par rapport Ã  la population
+-- Montre quel pourcentage de la population est infectÃ© par Covid
 -- for exemple in morocco
 Select Location, date, Population, total_cases,  (total_cases/population)*100 as PercentPopulationInfected
 From CovidDeaths
@@ -40,16 +40,16 @@ Where location like 'morocco'
 order by 1,2
 
 
--- Pays avec le taux d'infection le plus élevé par rapport à la population? trier selon ordre décroissant
+-- Pays avec le taux d'infection le plus Ã©levÃ© par rapport Ã  la population? trier selon ordre dÃ©croissant
 
 Select Location, Population, MAX(total_cases) as HighestInfectionCount,  Max((total_cases/population))*100 as PercentPopulationInfected
 From CovidDeaths
 Group by Location, Population
 order by PercentPopulationInfected desc
 
--- Le pays Andorre est le plus élevé
+-- Le pays Andorre est le plus Ã©levÃ©
 
--- Pays avec le plus grand nombre de décès par population
+-- Pays avec le plus grand nombre de dÃ©cÃ¨s par population
 
 Select Location, MAX(cast(Total_deaths as int)) as TotalDeathCount --using cast for casting the type of total_dearhs(varchar)
 From CovidDeaths
